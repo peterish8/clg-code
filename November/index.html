@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1">
+        <p id="para" class="msg">This is some text</p>
+    </div>
+</body>
+
+<script>
+    // console.log(document.title);
+
+    // // Access the paragraph before modifying the parent div
+    // let para = document.getElementById("para");
+
+    // // Modify paragraph content and style
+    // para.innerHTML = "THIS IS MODIFIED PARAGRAPH";
+    // console.log(para.innerHTML);
+
+    // para.className = "newClass";
+    // console.log(para.className);
+
+    // para.id = "newId";
+    // para.style.fontSize = "20px";
+    // para.style.color = "red";
+
+    // // Modify parent element's ID
+    // para.parentElement.id = "newId";
+    // console.log(para.parentElement.id);
+
+    // // Now replace the innerHTML of the parent div
+    // let id = document.getElementById("newId");
+    // id.innerHTML = "<h1>THIS IS MODIFIED</h1>";
+    // console.log(id.innerHTML);
+
+    // let element = document.creatElement("h1");
+    // element.innerText = "this is a msg";
+    // div.appendChild(element);
+    let obj = {
+    city: "bangalore",
+    pincode: 560037
+    }
+    let arr = [1,2,3,4,5];
+    const [ a, b, c, d ] = arr;
+    console.log(a, b, c, d)
+    // console.log(obj.name)
+    // console.log(obj.city)
+    const { name, city } = obj; //destructuring
+    console.log(name, city)
+    </script>
+    
+</html>

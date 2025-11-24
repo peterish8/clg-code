@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Assignment - Medium Level</title>
+</head>
+<body>
+    <h1>JavaScript Assignment - Medium Level</h1>
+    
+    <h2>Task 1: Age Category Checker</h2>
+    <button onclick="task1()">Run Task 1</button>
+    <div id="output1"></div>
+
+    <h2>Task 2: Introduction Formatter</h2>
+    <button onclick="task2()">Run Task 2</button>
+    <div id="output2"></div>
+
+    <h2>Task 3: Sign of Number</h2>
+    <button onclick="task3()">Run Task 3</button>
+    <div id="output3"></div>
+
+    <h2>Task 4: FizzBuzz Enhancement</h2>
+    <button onclick="task4()">Run Task 4</button>
+    <div id="output4"></div>
+
+    <h2>Task 5: Marks Analyzer</h2>
+    <button onclick="task5()">Run Task 5</button>
+    <div id="output5"></div>
+
+    <h2>Task 6: Reverse Array</h2>
+    <button onclick="task6()">Run Task 6</button>
+    <div id="output6"></div>
+
+    <h2>Task 7: Sum using Rest Parameters</h2>
+    <button onclick="task7()">Run Task 7</button>
+    <div id="output7"></div>
+
+    <h2>Task 8: Value vs Reference Demo</h2>
+    <button onclick="task8()">Run Task 8</button>
+    <div id="output8"></div>
+
+    <h2>Task 9: Array Transformation using HOFs</h2>
+    <button onclick="task9()">Run Task 9</button>
+    <div id="output9"></div>
+
+    <h2>Task 10: Custom Calculation with Callback</h2>
+    <button onclick="task10()">Run Task 10</button>
+    <div id="output10"></div>
+
+    <script>
+        function showOutput(taskNum, content) {
+            document.getElementById(`output${taskNum}`).innerHTML = content;
+        }
+
+        function task1() {
+            const age = Number(prompt("Enter age:"));
+            let category;
+            if (age < 18) category = "Minor";
+            else if (age <= 60) category = "Adult";
+            else category = "Senior";
+            showOutput(1, category);
+        }
+
+        function task2() {
+            const name = prompt("Enter name:");
+            const age = prompt("Enter age:");
+            const hobby = prompt("Enter hobby:");
+            const result = `My name is ${name}, I am ${age} years old, and I enjoy ${hobby}.`;
+            showOutput(2, result);
+        }
+
+        function task3() {
+            const n = Number(prompt("Enter a number:"));
+            let result;
+            if (n > 0) result = "Positive";
+            else if (n < 0) result = "Negative";
+            else result = "Zero";
+            showOutput(3, result);
+        }
+
+        function fizzBuzzArray(arr) {
+            return arr.map(num => {
+                if (num % 15 === 0) return "FizzBuzz";
+                if (num % 3 === 0) return "Fizz";
+                if (num % 5 === 0) return "Buzz";
+                return num;
+            });
+        }
+
+        function task4() {
+            const input = prompt("Enter numbers separated by spaces:");
+            const arr = input.split(" ").map(Number);
+            const result = fizzBuzzArray(arr);
+            showOutput(4, result.join("<br>"));
+        }
+
+        const marksAnalyzer = function(n, marks) {
+            const total = marks.reduce((sum, mark) => sum + mark, 0);
+            const average = total / n;
+            const highest = Math.max(...marks);
+            const lowest = Math.min(...marks);
+            return {total, average, highest, lowest};
+        };
+
+        function task5() {
+            const n = Number(prompt("Enter number of students:"));
+            const marksInput = prompt("Enter marks separated by spaces:");
+            const marks = marksInput.split(" ").map(Number);
+            const result = marksAnalyzer(n, marks);
+            const output = `Total: ${result.total}<br>Average: ${result.average}<br>Highest: ${result.highest}<br>Lowest: ${result.lowest}`;
+            showOutput(5, output);
+        }
+
+        function task6() {
+            const input = prompt("Enter numbers separated by spaces:");
+            const arr = input.split(" ").map(Number);
+            const reversed = [];
+            for (let i = arr.length - 1; i >= 0; i--) {
+                reversed.push(arr[i]);
+            }
+            showOutput(6, reversed.join(" "));
+        }
+
+        function sumRest(...numbers) {
+            return numbers.reduce((sum, num) => sum + num, 0);
+        }
+
+        function task7() {
+            const input = prompt("Enter numbers separated by spaces:");
+            const numbers = input.split(" ").map(Number);
+            const result = sumRest(...numbers);
+            showOutput(7, result);
+        }
+
+        function modifyArray(arr) {
+            arr.push(999);
+        }
+
+        function task8() {
+            const original = [1, 2, 3, 4, 5];
+            const copy = [...original];
+            const before = `Original before: [${original.join(", ")}]`;
+            modifyArray(original);
+            const after = `Original after: [${original.join(", ")}]`;
+            const copyResult = `Copy remains: [${copy.join(", ")}]`;
+            const output = `${before}<br>${after}<br>${copyResult}`;
+            showOutput(8, output);
+        }
+
+        function task9() {
+            const input = prompt("Enter numbers separated by spaces:");
+            if (input) {
+                const arr = input.split(" ").map(Number);
+                const squared = arr.map(x => x * x);
+                const filtered = squared.filter(x => x >= 25);
+                showOutput(9, `Input: ${arr.join(" ")}<br>Squared: ${squared.join(" ")}<br>Filtered (>=25): ${filtered.join(" ")}`);
+            }
+        }
+
+        function calculate(arr, callback, operation) {
+            return callback(arr, operation);
+        }
+
+        function processArray(arr, operation) {
+            if (operation === "sum") return arr.reduce((a, b) => a + b, 0);
+            if (operation === "product") return arr.reduce((a, b) => a * b, 1);
+            if (operation === "average") return arr.reduce((a, b) => a + b, 0) / arr.length;
+        }
+
+        function task10() {
+            const input = prompt("Enter numbers separated by spaces:");
+            const arr = input.split(" ").map(Number);
+            const operation = prompt("Enter operation (sum/product/average):");
+            const result = calculate(arr, processArray, operation);
+            showOutput(10, result);
+        }
+    </script>
+</body>
+</html>

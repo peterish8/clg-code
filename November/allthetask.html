@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All JavaScript Tasks</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        button { padding: 8px 12px; margin: 5px; }
+        input { padding: 5px; margin: 5px; }
+        .dark { background: black; color: white; }
+        .error { border: 2px solid red; }
+    </style>
+</head>
+<body>
+
+<!-- 1. Change paragraph text on button click -->
+<section>
+  <h2>1. Change Text</h2>
+  <p id="p1">Original text</p>
+  <button onclick="changeText()">Change Text</button>
+</section>
+
+<!-- 2. Add new list item on button click -->
+<section>
+  <h2>2. Add List Item</h2>
+  <ul id="list2">
+    <li>Item 1</li>
+  </ul>
+  <button onclick="addItem()">Add Item</button>
+</section>
+
+<!-- 3. Remove last child of a div -->
+<section>
+  <h2>3. Remove Last Child</h2>
+  <div id="box3">
+    <p>Child 1</p>
+    <p>Child 2</p>
+    <p>Child 3</p>
+  </div>
+  <button onclick="removeLast()">Remove Last</button>
+</section>
+
+<!-- 4. Count characters live -->
+<section>
+  <h2>4. Live Character Counter</h2>
+  <input id="text4" type="text" placeholder="Type here" onkeyup="countChars()">
+  <p>Total: <span id="count4">0</span></p>
+</section>
+
+<!-- 5. Toggle class (Dark Mode) -->
+<section>
+  <h2>5. Dark Mode</h2>
+  <button onclick="toggleDark()">Toggle Dark Mode</button>
+</section>
+
+<!-- 6. Show a message after 2 seconds -->
+<section>
+  <h2>6. setTimeout Demo</h2>
+  <button onclick="showMessage()">Show Message</button>
+  <p id="msg6"></p>
+</section>
+
+<!-- 7. Simple Counter using setInterval -->
+<section>
+  <h2>7. Counter (setInterval)</h2>
+  <p id="counter7">0</p>
+  <button onclick="startCounter()">Start</button>
+  <button onclick="stopCounter()">Stop</button>
+</section>
+
+<!-- 8. Fetch API (console log) -->
+<section>
+  <h2>8. Fetch API</h2>
+  <button onclick="fetchData()">Fetch & Log</button>
+  <p>Check console for result</p>
+</section>
+
+<!-- 9. Prevent form submit -->
+<section>
+  <h2>9. Prevent Form Submit</h2>
+  <form id="form9" onsubmit="return preventSubmit()">
+    <input type="text" placeholder="Type something">
+    <button type="submit">Submit</button>
+  </form>
+  <p id="formMsg9"></p>
+</section>
+
+<!-- 10. Event Delegation -->
+<section>
+  <h2>10. Event Delegation</h2>
+  <ul id="parent10" onclick="selectItem(event)">
+    <li>Apple</li>
+    <li>Banana</li>
+    <li>Mango</li>
+  </ul>
+  <p id="selected10"></p>
+</section>
+
+<!-- 11. Real-Time Search Filter -->
+<section>
+  <h2>11. Real-Time Search</h2>
+  <input id="search11" placeholder="Search fruit..." onkeyup="searchFruit()">
+  <ul id="list11">
+    <li>Apple</li>
+    <li>Orange</li>
+    <li>Grapes</li>
+    <li>Mango</li>
+  </ul>
+</section>
+
+<!-- 12. Closure returning counter -->
+<section>
+  <h2>12. Closure Counter</h2>
+  <button onclick="incrementCounter()">Increment</button>
+  <p id="closureCount">Count: 0</p>
+</section>
+
+<!-- 13. Fetch API with async/await & display name -->
+<section>
+  <h2>13. Async/Await Fetch</h2>
+  <button onclick="loadUser()">Load User</button>
+  <p id="user13"></p>
+</section>
+
+<!-- 14. Stop Event Bubbling -->
+<section>
+  <h2>14. Stop Bubbling</h2>
+  <div id="outer14" style="padding:20px;background:#eee;" onclick="outerClick()">
+    Outer DIV
+    <button onclick="innerClick(event)">Click Inner</button>
+  </div>
+</section>
+
+<!-- 15. Digital Clock -->
+<section>
+  <h2>15. Digital Clock</h2>
+  <h3 id="clock15"></h3>
+</section>
+
+<!-- 16. Highlight input red when empty -->
+<section>
+  <h2>16. Input Validation</h2>
+  <form onsubmit="return validateForm()">
+    <input id="input16" placeholder="Required field">
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+<!-- 17. Create DOM elements from array -->
+<section>
+  <h2>17. Generate List From Array</h2>
+  <ul id="array17"></ul>
+  <button onclick="generateList()">Generate List</button>
+</section>
+
+<!-- 18. Reusable API Fetch Function -->
+<section>
+  <h2>18. Reusable Fetch Function</h2>
+  <button onclick="fetchUser()">Fetch User</button>
+  <p id="data18"></p>
+</section>
+
+
+<script>
+// 1. Change Text
+function changeText() {
+    document.getElementById('p1').innerHTML = 'Text changed!';
+}
+
+// 2. Add List Item
+function addItem() {
+    var ul = document.getElementById('list2');
+    var li = document.createElement('li');
+    li.innerHTML = 'New Item';
+    ul.appendChild(li);
+}
+
+// 3. Remove Last Child
+function removeLast() {
+    var box = document.getElementById('box3');
+    if (box.children.length > 0) {
+        box.removeChild(box.lastElementChild);
+    }
+}
+
+// 4. Count Characters
+function countChars() {
+    var text = document.getElementById('text4').value;
+    document.getElementById('count4').innerHTML = text.length;
+}
+
+// 5. Toggle Dark Mode
+function toggleDark() {
+    document.body.classList.toggle('dark');
+}
+
+// 6. Show Message with setTimeout
+function showMessage() {
+    setTimeout(function() {
+        document.getElementById('msg6').innerHTML = 'Hello after 2 seconds!';
+    }, 2000);
+}
+
+// 7. Counter with setInterval
+var counterInterval;
+function startCounter() {
+    counterInterval = setInterval(function() {
+        var current = parseInt(document.getElementById('counter7').innerHTML);
+        document.getElementById('counter7').innerHTML = current + 1;
+    }, 1000);
+}
+
+function stopCounter() {
+    clearInterval(counterInterval);
+}
+
+// 8. Fetch API
+function fetchData() {
+    fetch('https://jsonplaceholder.typicode.com/users/1')
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log('Fetched Data:', data);
+        });
+}
+
+// 9. Prevent Form Submit
+function preventSubmit() {
+    document.getElementById('formMsg9').innerHTML = 'Form submission prevented!';
+    return false;
+}
+
+// 10. Event Delegation
+function selectItem(event) {
+    if (event.target.tagName === 'LI') {
+        document.getElementById('selected10').innerHTML = 'You clicked: ' + event.target.innerHTML;
+    }
+}
+
+// 11. Real-Time Search
+function searchFruit() {
+    var searchValue = document.getElementById('search11').value.toLowerCase();
+    var items = document.getElementById('list11').getElementsByTagName('li');
+    
+    for (var i = 0; i < items.length; i++) {
+        var itemText = items[i].innerHTML.toLowerCase();
+        if (itemText.indexOf(searchValue) > -1) {
+            items[i].style.display = 'block';
+        } else {
+            items[i].style.display = 'none';
+        }
+    }
+}
+
+// 12. Closure Counter
+var closureCounter = (function() {
+    var count = 0;
+    return function() {
+        count++;
+        return count;
+    };
+})();
+
+function incrementCounter() {
+    var newCount = closureCounter();
+    document.getElementById('closureCount').innerHTML = 'Count: ' + newCount;
+}
+
+// 13. Async/Await Fetch
+async function loadUser() {
+    const res = await fetch('https://jsonplaceholder.typicode.com/users/1');
+    const data = await res.json();
+    document.getElementById('user13').innerHTML = data.name;
+}
+
+// 14. Stop Event Bubbling
+function outerClick() {
+    alert('Outer clicked');
+}
+
+function innerClick(event) {
+    event.stopPropagation();
+    alert('Inner clicked only');
+}
+
+// 15. Digital Clock
+function updateClock() {
+    var now = new Date();
+    var hours = now.getHours().toString().padStart(2, '0');
+    var minutes = now.getMinutes().toString().padStart(2, '0');
+    var seconds = now.getSeconds().toString().padStart(2, '0');
+    var time = hours + ':' + minutes + ':' + seconds;
+    document.getElementById('clock15').innerHTML = time;
+}
+setInterval(updateClock, 1000);
+
+// 16. Input Validation
+function validateForm() {
+    var input = document.getElementById('input16');
+    if (input.value === '') {
+        input.className = 'error';
+        return false;
+    } else {
+        input.className = '';
+        return true;
+    }
+}
+
+// 17. Generate List From Array
+function generateList() {
+    var colors = ['Red', 'Blue', 'Green'];
+    var ul = document.getElementById('array17');
+    ul.innerHTML = '';
+    
+    for (var i = 0; i < colors.length; i++) {
+        var li = document.createElement('li');
+        li.innerHTML = colors[i];
+        ul.appendChild(li);
+    }
+}
+
+// 18. Reusable Fetch Function
+function fetchAnyData(url, callback) {
+    fetch(url)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(callback);
+}
+
+function fetchUser() {
+    fetchAnyData('https://jsonplaceholder.typicode.com/users/2', function(data) {
+        document.getElementById('data18').innerHTML = data.email;
+    });
+}
+</script>
+
+</body>
+</html>

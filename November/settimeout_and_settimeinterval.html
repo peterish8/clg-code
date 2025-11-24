@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stopwatch</title>
+</head>
+<body>
+    <h1 id="time">0</h1>
+    <button onclick="start()">Start</button>
+    <button onclick="stop()">Stop</button>
+    
+    <div id="grandParent">
+        <div id="parent">
+            <div id="child">Click me</div>
+        </div>
+    </div>
+    
+    <script>
+        // function abc(){
+        //     let i;
+        //     for(i=0;i<3;i++){
+        //         setTimeout(()=>{
+        //             console.log(i)
+        //         },500)
+        //     }
+        // }
+        // abc();
+
+        // event bubbling
+        let grandParent = document.getElementById('grandParent');
+        grandParent.addEventListener('click', () => {
+            console.log('grandParent clicked')
+        }, true)
+
+        let parent = document.getElementById('parent');
+        parent.addEventListener('click', (e) => {
+            console.log('parent clicked')
+        }, false)
+
+        let child = document.getElementById('child');
+        child.addEventListener('click', (e) => {
+            console.log('child clicked')
+        }, true)
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!--
+📘 Topic: Simplest Vanilla JS Todo List
+Concept: Add items to a <ul> using <input>, <button>, and getElementById
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simple Todo List</title>
+  </head>
+  <body>
+    <div class="todo-container">
+      <h3>📝 Simple Todo</h3>
+
+      <!-- Input and Button -->
+      <div>
+        <input type="text" id="input" />
+        <button id="btn">Add</button>
+      </div>
+
+      <!-- Task List -->
+      <ul id="list"></ul>
+    </div>
+
+    <script>
+      // Get elements by ID
+      const input = document.getElementById("input");
+      const btn = document.getElementById("btn");
+      const list = document.getElementById("list");
+
+      btn.addEventListener("click", () => {
+        if (input.value !== "") {
+          let listItem = document.createElement("li");
+          listItem.innerText = input.value;
+          list.prepend(listItem);
+          input.value = "";
+          }
+        }
+      );
+    </script>-
+  </body>
+</html>
