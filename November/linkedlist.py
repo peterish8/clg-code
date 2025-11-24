@@ -29,3 +29,28 @@ node2.next = node3
 # 1 singly linked list
 # 2 doubly linked list
 # 3 circular linked list  --tail.next=head
+
+#need to delete the 3rd node also handle the edge case like if the 3rd node is not even there then what happens
+head = node1
+current = head
+k = 3
+
+# Handle edge case: if k=1, delete head
+if k == 1:
+    head = head.next
+else:
+    # Traverse to (k-1)th node
+    # Need to move (k-2) steps to reach (k-1)th node
+    count = 1
+    while count < k-1:
+        if current is None or current.next is None:
+            print("Node not found")
+            break
+        current = current.next
+        count += 1
+    
+    # Delete kth node if it exists
+    if current and current.next:
+        current.next = current.next.next
+    else:
+        print("3rd node doesn't exist")
