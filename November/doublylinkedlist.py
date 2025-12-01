@@ -1,0 +1,22 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.prev = None
+        self.next = None
+
+def adddoubly(head, data):
+    if head is None:
+        return Node(data)
+    new = Node(data)
+    temp = head
+    while temp.next:
+        temp = temp.next
+    temp.next = new
+    new.prev = temp
+    return head
+
+
+# Test case: [2,4,6]
+head = Node(2)
+adddoubly(head, 4)
+adddoubly(head, 6)
