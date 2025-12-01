@@ -67,3 +67,16 @@ while temp:
     print(temp.data)
     temp = temp.next
 
+
+class Solution:
+    def insertAtPos(self, head, p, x):
+        new = Node(x)
+        temp = head
+        for i in range(p):
+            temp = temp.next
+        new.next = temp.next
+        if temp.next:
+            temp.next.prev = new
+        temp.next = new
+        new.prev = temp
+        return head
