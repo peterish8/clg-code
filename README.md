@@ -11,6 +11,7 @@ Just basic college code - following sir's explanations and writing practice prog
 - Bootstrap projects
 - Python programs
 - Database projects
+- linked list
 
 ## Organization
 Code is organized into monthly folders with subfolders for different concepts and topics covered in class as files.
